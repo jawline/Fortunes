@@ -15,10 +15,13 @@
 			Score
 			</th>
 		</tr>
+
 		<tr ng-repeat="(key, val) in l_answers track by $index">
-			<td>{{key}}</td>
-			<td><a ng-click="reveal(key)">{{val}}</a></td>
-			<td>{{l_scores[key]}}</td>
+			<a ng-click="reveal(key)">
+				<td>{{key}}</td>
+				<td>{{val}}</td>
+				<td>{{l_scores[key]}}</td>
+			</a>
 		</tr>
 	</table>
 
