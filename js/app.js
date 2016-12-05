@@ -20,9 +20,20 @@ game.controller('Round', function($scope, $routeParams) {
 	$scope.scores = $scope.question.scores;
 
 	$scope.reveal = function(key) {
-		$scope.l_answers[key] = $scope.answers[key];
-		$scope.l_scores[key] = $scope.scores[key];
+		if (key >= 0 && key < $scope.question.answers.length) {
+			$scope.l_answers[key] = $scope.answers[key];
+			$scope.l_scores[key] = $scope.scores[key];
+		}
+		$scope.$apply();
 	}
+
+	document.onkeypress = function (e) {
+    	e = e || window.event;
+    	// use e.keyCode
+    	console.log(e);
+    	console.log(parseInt(e.key));
+    	$scope.reveal(parseInt(e.key) - 1);
+	};
 
 	$scope.l_answers = [];
 	$scope.l_scores = [];
