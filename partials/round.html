@@ -6,7 +6,7 @@
 	<table class="table"> 
 		<tr>
 			<th>
-			ID
+			Question
 			</th>
 			<th>
 			Answer
@@ -17,7 +17,7 @@
 		</tr>
 
 		<tr ng-repeat="(key, val) in l_answers track by $index">
-			<td><a ng-click="reveal(key)">{{key}}</a></td>
+			<td><a ng-click="reveal(key)">{{key + 1}}</a></td>
 			<td><a ng-click="reveal(key)">{{val}}</a></td>
 			<td><a ng-click="reveal(key)">{{l_scores[key]}}</a></td>
 		</tr>
