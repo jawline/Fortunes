@@ -30,8 +30,8 @@ game.controller('Round', function($scope, $routeParams) {
 	document.onkeypress = function (e) {
     	e = e || window.event;
     	// use e.keyCode
-    	console.log(e);
-    	console.log(parseInt(e.key));
+    	var lKey = parseInt(e.key);
+    	lKey = lKey == 0 ? 10 : lKey;
     	$scope.reveal(parseInt(e.key) - 1);
 	};
 
