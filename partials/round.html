@@ -17,11 +17,9 @@
 		</tr>
 
 		<tr ng-repeat="(key, val) in l_answers track by $index">
-			<a ng-click="reveal(key)">
-				<td>{{key}}</td>
-				<td>{{val}}</td>
-				<td>{{l_scores[key]}}</td>
-			</a>
+			<td><a ng-click="reveal(key)">{{key}}</a></td>
+			<td><a ng-click="reveal(key)">{{val}}</a></td>
+			<td><a ng-click="reveal(key)">{{l_scores[key]}}</a></td>
 		</tr>
 	</table>
 

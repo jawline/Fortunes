@@ -29,7 +29,7 @@ game.controller('Round', function($scope, $routeParams) {
 
 	for (var i = 0; i < $scope.question.answers.length; i++) {
 		$scope.l_answers[i] = "_______";
-		$scope.l_scores[i] = "";
+		$scope.l_scores[i] = "_";
 	}
 });
 
