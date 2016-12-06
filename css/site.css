@@ -53,4 +53,17 @@ a:focus {
 	width: 70%;
 	margin: auto;
 	margin-top: 75px;
+    margin-bottom: 30px;
+}
+
+.round-total {
+    position: relative;
+    clear:both;
+    float:right;
+    padding-right:2.25em;
+}
+
+.total-title {
+    font-weight:bold;
+    font-size: 1.5em;
 }
