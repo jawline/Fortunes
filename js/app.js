@@ -8,13 +8,13 @@ game.controller('Round', function($scope, $routeParams) {
 	var lid = parseInt($routeParams.id);
 
 	//Generate the next panel URI
-	if (lid + 1 >= Questions.length) {
+	if (lid + 1 >= RQuestions.length) {
 		$scope.nexturi = "#!/done/";
 	} else {
 		$scope.nexturi = "#!/round/" + (lid + 1);
 	}
 
-	$scope.question = Questions[lid];
+	$scope.question = RQuestions[lid];
 
 	$scope.answers = $scope.question.answers;
 	$scope.scores = $scope.question.scores;
