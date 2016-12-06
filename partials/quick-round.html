@@ -3,29 +3,60 @@
 
 	{{l_answers.length}} answers
 
-	<table class="table"> 
-		<tr>
-			<th>
-			Question
-			</th>
-			<th>
-			Answer
-			</th>
-			<th>
-			Score
-			</th>
-		</tr>
+    <div class="socreboards">
+        <span id="first" class="scoreboard">
+            <table class="table"> 
+                <tr>
+                    <th>
+                    Question
+                    </th>
+                    <th>
+                    Answer
+                    </th>
+                    <th>
+                    Score
+                    </th>
+                </tr>
 
-		<tr ng-repeat="(key, val) in l_answers track by $index">
-			<td><a ng-click="reveal(key)">{{key + 1}}</a></td>
-			<td><a ng-click="reveal(key)">{{val}}</a></td>
-			<td><a ng-click="reveal(key)">{{l_scores[key]}}</a></td>
-		</tr>
-	</table>
-    <div class="round-total">
-        <span class="total-title"> Total </span>
-        <span class="total-score"> {{score}} </span>
+                <tr ng-repeat="(key, val) in l_answers track by $index">
+                    <td><a ng-click="reveal(key)">{{key + 1}}</a></td>
+                    <td><a ng-click="reveal(key)">{{val}}</a></td>
+                    <td><a ng-click="reveal(key)">{{l_scores[key]}}</a></td>
+                </tr>
+            </table>
+            <div class="round-total">
+                <span class="total-title"> Total </span>
+                <span class="total-score"> {{score}} </span>
+            </div>
+        </span>
+        <span id="second" class="scoreboard">
+            <table class="table"> 
+                <tr>
+                    <th>
+                    Question
+                    </th>
+                    <th>
+                    Answer
+                    </th>
+                    <th>
+                    Score
+                    </th>
+                </tr>
+
+                <tr ng-repeat="(key, val) in l_answers track by $index">
+                    <td><a ng-click="reveal(key)">{{key + 1}}</a></td>
+                    <td><a ng-click="reveal(key)">{{val}}</a></td>
+                    <td><a ng-click="reveal(key)">{{l_scores[key]}}</a></td>
+                </tr>
+            </table>
+            <div class="round-total">
+                <span class="total-title"> Total </span>
+                <span class="total-score"> {{score}} </span>
+            </div>
+        </span>
     </div>
 
-	<a ng-href="{{nexturi}}" class="btn btn-success">Next</a>
+    <div class="next-btn">
+        <a ng-href="{{nexturi}}" class="btn btn-success">Next</a>
+    </div>
 </div>
