@@ -19,14 +19,14 @@
                 </tr>
 
                 <tr ng-repeat="(key, val) in l_answers track by $index">
-                    <td><a ng-click="reveal(key)">{{key + 1}}</a></td>
+                    <td><a ng-click="reveal(key)">{{(key + 1)}}</a></td>
                     <td><a ng-click="reveal(key)">{{val}}</a></td>
                     <td><a ng-click="reveal(key)">{{l_scores[key]}}</a></td>
                 </tr>
             </table>
             <div class="round-total">
                 <span class="total-title"> Total </span>
-                <span class="total-score"> {{score}} </span>
+                <span class="total-score"> {{lscore}} </span>
             </div>
         </span>
         <span id="second" class="scoreboard">
@@ -43,15 +43,15 @@
                     </th>
                 </tr>
 
-                <tr ng-repeat="(key, val) in l_answers track by $index">
-                    <td><a ng-click="reveal(key)">{{key + 1}}</a></td>
-                    <td><a ng-click="reveal(key)">{{val}}</a></td>
-                    <td><a ng-click="reveal(key)">{{l_scores[key]}}</a></td>
+                <tr ng-repeat="(key, val) in r_answers track by $index">
+                    <td><a ng-click="reveal(100 + key)">{{key + 1}}</a></td>
+                    <td><a ng-click="reveal(100 + key)">{{val}}</a></td>
+                    <td><a ng-click="reveal(100 + key)">{{r_scores[key]}}</a></td>
                 </tr>
             </table>
             <div class="round-total">
                 <span class="total-title"> Total </span>
-                <span class="total-score"> {{score}} </span>
+                <span class="total-score"> {{rscore}} </span>
             </div>
         </span>
     </div>

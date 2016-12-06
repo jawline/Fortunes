@@ -74,15 +74,26 @@ game.controller('QuickRound', function($scope, $routeParams) {
 	$scope.question = QQuestions[lid];
 	$scope.answers = $scope.question.answers;
 	$scope.scores = $scope.question.scores;
-    $scope.score = 0;
+    $scope.lscore = 0;
+    $scope.rscore = 0;
 
 	$scope.reveal = function(key) {
-		if (key >= 0 && key < $scope.question.answers.length) {
-			$scope.l_answers[key] = $scope.answers[key];
-			$scope.l_scores[key] = $scope.scores[key];
-            correct.play();
-            $scope.score += parseInt($scope.scores[key]);
-		}
+        if(key  < 100){
+            if (key >= 0 && key < $scope.question.answers.length) {
+                $scope.l_answers[key] = $scope.answers[key];
+                $scope.l_scores[key] = $scope.scores[key];
+                correct.play();
+                $scope.lscore += parseInt($scope.scores[key]);
+            }
+        }else{
+            key = key % 100;
+            if (key >= 0 && key < $scope.question.answers.length) {
+                $scope.r_answers[key] = $scope.answers[key];
+                $scope.r_scores[key] = $scope.scores[key];
+                correct.play();
+                $scope.rscore += parseInt($scope.scores[key]);
+            }
+        }
 		$scope.$apply();
 	}
 
@@ -97,16 +108,27 @@ game.controller('QuickRound', function($scope, $routeParams) {
 
     	// use e.keyCode
     	var lKey = parseInt(e.key);
-    	lKey = lKey == 0 ? 10 : lKey;
-    	$scope.reveal(parseInt(e.key) - 1);
+        if(e.ctrlKey) {
+            lKey += 100;
+            lKey = lKey == 100 ? 110 : lKey;
+        }else{
+            lKey = lKey == 0 ? 10 : lKey;
+        }
+
+    	$scope.reveal(lKey - 1);
 	};
 
 	$scope.l_answers = [];
 	$scope.l_scores = [];
+	$scope.r_answers = [];
+	$scope.r_scores = [];
 
 	for (var i = 0; i < $scope.question.answers.length; i++) {
 		$scope.l_answers[i] = "___________";
 		$scope.l_scores[i] = "__";
+
+		$scope.r_answers[i] = "___________";
+		$scope.r_scores[i] = "__";
 	}
 });
 

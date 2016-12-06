@@ -71,6 +71,7 @@ a:focus {
     justify-content:center;
     align-items:center;
     text-align: center;
+    height:80%;
 }
 
 .round-total {

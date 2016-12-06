@@ -32,7 +32,7 @@ var QQuestions = [
         answers: ["Microsoft", "Google", "Apple", "IBM", "HP", "Sony"],
         scores: [27, 23, 18, 18, 9, 5]
     }, {
-        title: "Which messeging App do you trust the most?",
+        title: "Which messeging app do you trust the most?",
         answers: ["WhatsApp", "iMessage", "Facebook Messenger", "Signal", "Txt message"],
         scores: [20, 9, 4, 1, 1]
     }, {
