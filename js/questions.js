@@ -29,7 +29,19 @@ var QQuestions = [
         scores: [25, 20, 17, 17, 13, 8]
     }, {
         title: "Name a high profile tech company.",
-        answer: ["Microsoft", "Google", "Apple", "IBM", "HP", "Sony"],
+        answers: ["Microsoft", "Google", "Apple", "IBM", "HP", "Sony"],
         scores: [27, 23, 18, 18, 9, 5]
+    }, {
+        title: "Which messeging App do you trust the most?",
+        answers: ["WhatsApp", "iMessage", "Facebook Messenger", "Signal", "Txt message"],
+        scores: [20, 9, 4, 1, 1]
+    }, {
+        title: "Which government carries out the most mass surveillance?",
+        answers: ["USA", "North Korea", "UK", "Russia", "China", "Japan"],
+        scores: [16, 7, 5, 3, 2, 1]
+    }, {
+        title: "Name an Internet Browser?",
+        answers: ["Chrome", "Sarafi", "Internet Explorer", "Firefox", "Netscape"],
+        scores: [16, 6, 4, 3, 1]
     }
 ];
