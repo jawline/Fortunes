@@ -1,0 +1,31 @@
+<div class="game-body">
+	<h1>{{question.title}}</h1>
+
+	{{l_answers.length}} answers
+
+	<table class="table"> 
+		<tr>
+			<th>
+			Question
+			</th>
+			<th>
+			Answer
+			</th>
+			<th>
+			Score
+			</th>
+		</tr>
+
+		<tr ng-repeat="(key, val) in l_answers track by $index">
+			<td><a ng-click="reveal(key)">{{key + 1}}</a></td>
+			<td><a ng-click="reveal(key)">{{val}}</a></td>
+			<td><a ng-click="reveal(key)">{{l_scores[key]}}</a></td>
+		</tr>
+	</table>
+    <div class="round-total">
+        <span class="total-title"> Total </span>
+        <span class="total-score"> {{score}} </span>
+    </div>
+
+	<a ng-href="{{nexturi}}" class="btn btn-success">Next</a>
+</div>

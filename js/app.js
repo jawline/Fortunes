@@ -4,22 +4,21 @@
 
 var game = angular.module('game', [ 'ngRoute' ]);
 
+//Load audio files
+var correct = new Audio('/media/correct.ogg');
+var wrong = new Audio('/media/wrong.mp3');
+
 game.controller('Round', function($scope, $routeParams) {
 	var lid = parseInt($routeParams.id);
 
 	//Generate the next panel URI
 	if (lid + 1 >= RQuestions.length) {
-		$scope.nexturi = "#!/done/";
+		$scope.nexturi = "#!/qround/0";
 	} else {
 		$scope.nexturi = "#!/round/" + (lid + 1);
 	}
 
-    //Load audio files
-    var correct = new Audio('/media/correct.ogg');
-    var wrong = new Audio('/media/wrong.mp3');
-
 	$scope.question = RQuestions[lid];
-
 	$scope.answers = $scope.question.answers;
 	$scope.scores = $scope.question.scores;
     $scope.score = 0;
@@ -61,6 +60,58 @@ game.controller('Round', function($scope, $routeParams) {
 game.controller('Done', function($scope, $routeParams) {
 });
 
+
+game.controller('QuickRound', function($scope, $routeParams) {
+	var lid = parseInt($routeParams.id);
+
+	//Generate the next panel URI
+	if (lid + 1 >= QQuestions.length) {
+		$scope.nexturi = "#!/done/";
+	} else {
+		$scope.nexturi = "#!/qround/" + (lid + 1);
+	}
+
+	$scope.question = QQuestions[lid];
+	$scope.answers = $scope.question.answers;
+	$scope.scores = $scope.question.scores;
+    $scope.score = 0;
+
+	$scope.reveal = function(key) {
+		if (key >= 0 && key < $scope.question.answers.length) {
+			$scope.l_answers[key] = $scope.answers[key];
+			$scope.l_scores[key] = $scope.scores[key];
+            correct.play();
+            $scope.score += parseInt($scope.scores[key]);
+		}
+		$scope.$apply();
+	}
+
+    //NB: music.play() will not replay a sound bite if it is already started
+	document.onkeypress = function (e) {
+    	e = e || window.event;
+
+        if(e.key == "x") {
+            wrong.play();
+            return false;
+        }
+
+    	// use e.keyCode
+    	var lKey = parseInt(e.key);
+    	lKey = lKey == 0 ? 10 : lKey;
+    	$scope.reveal(parseInt(e.key) - 1);
+	};
+
+	$scope.l_answers = [];
+	$scope.l_scores = [];
+
+	for (var i = 0; i < $scope.question.answers.length; i++) {
+		$scope.l_answers[i] = "___________";
+		$scope.l_scores[i] = "__";
+	}
+});
+
+
+
 game.config([ '$routeProvider', function($routeProvider) {
 
 	$routeProvider.when('/', {
@@ -68,6 +119,9 @@ game.config([ '$routeProvider', function($routeProvider) {
 	}).when('/round/:id', {
 		controller: 'Round',
 		templateUrl: 'partials/round.html'
+	}).when('/qround/:id', {
+		controller: 'QuickRound',
+		templateUrl: 'partials/quick-round.html'
 	}).when('/done', {
 		controller: 'Done',
 		templateUrl: 'partials/done.html'

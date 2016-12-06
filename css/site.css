@@ -57,8 +57,19 @@ a:focus {
 	background: white;
 	width: 70%;
 	margin: auto;
-	margin-top: 75px;
-    margin-bottom: 30px;
+	margin-top: 1.25em;
+    margin-bottom: 1.25em;
+}
+
+.center-body {
+    padding:2em;
+}
+
+.center-wrap {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align: center;
 }
 
 .round-total {
@@ -71,4 +82,10 @@ a:focus {
 .total-title {
     font-weight:bold;
     font-size: 1.5em;
+}
+
+.btn-xl {
+    padding: 0.5em 0.75em;
+    font-size: 4em;
+    border-radius: 0.5em;
 }
