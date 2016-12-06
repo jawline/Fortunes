@@ -3,12 +3,17 @@
   src: url(../fonts/Corbel.ttf);
 }
 
+@font-face {
+  font-family: retro-custom;
+  src: url(../fonts/8-BIT WONDER.ttf);
+}
+
 html {
 	width: 100%;
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	font-family: base;
+	font-family: retro-custom;
 }
 
 body {
