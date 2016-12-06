@@ -22,6 +22,10 @@
 			<td><a ng-click="reveal(key)">{{l_scores[key]}}</a></td>
 		</tr>
 	</table>
+    <div class="total">
+        <span class="total_title"> Total </span>
+        <span class="total_score"> {{score}} </span>
+    </div>
 
 	<a ng-href="{{nexturi}}" class="btn btn-success">Next</a>
 </div>

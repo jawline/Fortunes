@@ -22,12 +22,14 @@ game.controller('Round', function($scope, $routeParams) {
 
 	$scope.answers = $scope.question.answers;
 	$scope.scores = $scope.question.scores;
+    $scope.score = 0;
 
 	$scope.reveal = function(key) {
-        correct.play();
 		if (key >= 0 && key < $scope.question.answers.length) {
 			$scope.l_answers[key] = $scope.answers[key];
 			$scope.l_scores[key] = $scope.scores[key];
+            correct.play();
+            $scope.score += parseInt($scope.scores[key]);
 		}
 		$scope.$apply();
 	}
@@ -51,8 +53,8 @@ game.controller('Round', function($scope, $routeParams) {
 	$scope.l_scores = [];
 
 	for (var i = 0; i < $scope.question.answers.length; i++) {
-		$scope.l_answers[i] = "_______";
-		$scope.l_scores[i] = "_";
+		$scope.l_answers[i] = "___________";
+		$scope.l_scores[i] = "__";
 	}
 });
 
