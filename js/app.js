@@ -14,12 +14,17 @@ game.controller('Round', function($scope, $routeParams) {
 		$scope.nexturi = "#!/round/" + (lid + 1);
 	}
 
+    //Load audio files
+    var correct = new Audio('/media/correct.ogg');
+    var wrong = new Audio('/media/wrong.mp3');
+
 	$scope.question = RQuestions[lid];
 
 	$scope.answers = $scope.question.answers;
 	$scope.scores = $scope.question.scores;
 
 	$scope.reveal = function(key) {
+        correct.play();
 		if (key >= 0 && key < $scope.question.answers.length) {
 			$scope.l_answers[key] = $scope.answers[key];
 			$scope.l_scores[key] = $scope.scores[key];
@@ -27,8 +32,15 @@ game.controller('Round', function($scope, $routeParams) {
 		$scope.$apply();
 	}
 
+    //NB: music.play() will not replay a sound bite if it is already started
 	document.onkeypress = function (e) {
     	e = e || window.event;
+
+        if(e.key == "x") {
+            wrong.play();
+            return false;
+        }
+
     	// use e.keyCode
     	var lKey = parseInt(e.key);
     	lKey = lKey == 0 ? 10 : lKey;
