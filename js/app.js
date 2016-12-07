@@ -40,20 +40,20 @@ game.controller('Round', function($scope, $routeParams) {
 	}
 
 	$scope.question = RQuestions[lid];
-	$scope.answers = $scope.question.answers;
-	$scope.scores = $scope.question.scores;
+	$scope.answers = []; //empty arrays
+	$scope.scores = [];
     $scope.score = 0;
 
     $scope.isRevealed = function(key) {
-    	return $scope.l_answers[key] === $scope.answers[key];
+    	return $scope.answers[key] === $scope.question.answers[key];
     }
 
 	$scope.reveal = function(key) {
 		if (!$scope.isRevealed(key) && key >= 0 && key < $scope.question.answers.length) {
-			$scope.l_answers[key] = $scope.answers[key];
-			$scope.l_scores[key] = $scope.scores[key];
+			$scope.answers[key] = $scope.question.answers[key];
+			$scope.scores[key] = $scope.question.scores[key];
             correct.play();
-            $scope.score += parseInt($scope.scores[key]);
+            $scope.score += parseInt($scope.question.scores[key]);
 		}
 		$scope.$apply();
 	}
@@ -69,12 +69,9 @@ game.controller('Round', function($scope, $routeParams) {
     	$scope.reveal(parseInt(e.key) - 1);
 	};
 
-	$scope.l_answers = [];
-	$scope.l_scores = [];
-
 	for (var i = 0; i < $scope.question.answers.length; i++) {
-		$scope.l_answers[i] = "___________";
-		$scope.l_scores[i] = "__";
+		$scope.answers[i] = "___________";
+		$scope.scores[i] = "__";
 	}
 });
 
@@ -88,31 +85,38 @@ game.controller('QuickRound', function($scope, $routeParams) {
 	//$scope.question = QQuestions[lid];
     $scope.question = QAnswers;
 
-	$scope.answers = $scope.question.answers;
-	$scope.scores = $scope.question.scores;
-    $scope.lscore = 0;
-    $scope.rscore = 0;
+	//$scope.answers = $scope.question[0].answers;
+	//$scope.scores = $scope.question[0].scores;
+    $scope.l_score = 0;
+    $scope.r_score = 0;
+
+    $scope.l_answers = $scope.question[0].answers;
+    $scope.r_answers = $scope.question[1].answers;
+
+	$scope.l_scores = $scope.question[0].scores;
+	$scope.r_scores = $scope.question[1].scores;
 
 
-    $scope.isRevealed = function(list, key) {
-    	return list[key] === $scope.answers[key];
+
+    $scope.isRevealed = function(list, list2, key) {
+    	return list[key] === list2[key];
     }
 
 	$scope.reveal = function(key) {
         if(key  < 100){
-            if (!$scope.isRevealed($scope.l_answers, key) && key >= 0 && key < $scope.question.answers.length) {
-                $scope.l_answers[key] = $scope.answers[key];
-                $scope.l_scores[key] = $scope.scores[key];
+            if (!$scope.isRevealed($scope.l_answers, key) && key >= 0 && key < $scope.l_answers.length) {
+                $scope.l_answers[key] = $scope.l_answers[key];
+                $scope.l_scores[key] = $scope.l_scores[key];
                 correct.play();
-                $scope.lscore += parseInt($scope.scores[key]);
+                $scope.l_score += parseInt($scope.l_scores[key]);
             }
         }else{
             key = key % 100;
             if (!$scope.isRevealed($scope.r_answers, key) && key >= 0 && key < $scope.question.answers.length) {
-                $scope.r_answers[key] = $scope.answers[key];
-                $scope.r_scores[key] = $scope.scores[key];
+                $scope.r_answers[key] = $scope.r_answers[key];
+                $scope.r_scores[key] = $scope.r_scores[key];
                 correct.play();
-                $scope.rscore += parseInt($scope.scores[key]);
+                $scope.rscore += parseInt($scope.r_scores[key]);
             }
         }
 		$scope.$apply();
@@ -140,10 +144,11 @@ game.controller('QuickRound', function($scope, $routeParams) {
 	$scope.r_answers = [];
 	$scope.r_scores = [];
 
-	for (var i = 0; i < $scope.question.answers.length; i++) {
+	for (var i = 0; i < $scope.l_answers.length; i++) {
 		$scope.l_answers[i] = "___________";
 		$scope.l_scores[i] = "__";
-
+    }
+	for (var i = 0; i < $scope.r_answers.length; i++) {
 		$scope.r_answers[i] = "___________";
 		$scope.r_scores[i] = "__";
 	}
@@ -158,7 +163,7 @@ game.config([ '$routeProvider', function($routeProvider) {
 	}).when('/round/:id', {
 		controller: 'Round',
 		templateUrl: 'partials/round.html'
-	}).when('/qround/:id', {
+	}).when('/qround', {
 		controller: 'QuickRound',
 		templateUrl: 'partials/quick-round.html'
 	}).when('/done', {

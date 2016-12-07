@@ -48,12 +48,10 @@ var QQuestions = [
 
 var QAnswers = [
     {
-        answers: [],
-        scores: []
-    },
-    {
-        answers: [],
-        scores: []
+        answers: ["a", "b", "c", "d", "e"],
+        scores: [0, 0, 0, 0, 0]
+    }, {
+        answers: ["a", "b", "c", "d", "e"],
+        scores: [0, 0, 0, 0, 0]
     }
-
 ];
