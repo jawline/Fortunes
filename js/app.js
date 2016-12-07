@@ -82,16 +82,12 @@ game.controller('Done', function($scope, $routeParams) {});
 
 
 game.controller('QuickRound', function($scope, $routeParams) {
-	var lid = parseInt($routeParams.id);
+	//var lid = parseInt($routeParams.id);
+    $scope.nexturi = "#!/done/";
 
-	//Generate the next panel URI
-	if (lid + 1 >= QQuestions.length) {
-		$scope.nexturi = "#!/done/";
-	} else {
-		$scope.nexturi = "#!/qround/" + (lid + 1);
-	}
+	//$scope.question = QQuestions[lid];
+    $scope.question = QAnswers;
 
-	$scope.question = QQuestions[lid];
 	$scope.answers = $scope.question.answers;
 	$scope.scores = $scope.question.scores;
     $scope.lscore = 0;
@@ -122,23 +118,10 @@ game.controller('QuickRound', function($scope, $routeParams) {
 		$scope.$apply();
 	}
 
-    var loadAnswers = function(lr){
-        $http.get('/answers/'+ lr + '.json')
-            .success(function(data, status, headers, config) {
-                $scope[lr+ "_answer"] = data;
-        });
-    }
-
     //NB: music.play() will not replay a sound bite if it is already started
 	document.onkeypress = function (e) {
     	e = e || window.event;
         keyPressHandler(e);
-
-        //load results from server
-        if(e.key == "l"){
-            load_answsers(); 
-            return false;
-        }
 
         var lKey = parseInt(e.key);
         if(e.ctrlKey){

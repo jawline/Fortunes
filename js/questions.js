@@ -45,3 +45,15 @@ var QQuestions = [
         scores: [16, 6, 4, 3, 1]
     }
 ];
+
+var QAnswers = [
+    {
+        answers: [],
+        scores: []
+    },
+    {
+        answers: [],
+        scores: []
+    }
+
+];
