@@ -123,7 +123,7 @@ game.controller('QuickRound', function($scope, $routeParams) {
 	}
 
     var loadAnswers = function(lr){
-        $http.get('/answers'+ lr + '.json')
+        $http.get('/answers/'+ lr + '.json')
             .success(function(data, status, headers, config) {
                 $scope[lr+ "_answer"] = data;
         });
@@ -137,16 +137,18 @@ game.controller('QuickRound', function($scope, $routeParams) {
         //load results from server
         if(e.key == "l"){
             load_answsers(); 
+            return false;
         }
 
-        if(e.which == 39){ //right arrow
-               if(e.ctrlKey){
-                    //advance right answers
-               } else {
-                    //advance left answers
-               }
+        var lKey = parseInt(e.key);
+        if(e.ctrlKey){
+            //advance right answers
+            lKey = lKey == 100 ? 110 : lKey + 100;
+        } else {
+            //advance left answers
+            lKey = lKey == 0 ? 10 : lKey;
         }
-
+        console.log(lKey);
     	$scope.reveal(lKey - 1);
 	};
 
