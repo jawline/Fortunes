@@ -78,8 +78,7 @@ game.controller('Round', function($scope, $routeParams) {
 	}
 });
 
-game.controller('Done', function($scope, $routeParams) {
-});
+game.controller('Done', function($scope, $routeParams) {});
 
 
 game.controller('QuickRound', function($scope, $routeParams) {
