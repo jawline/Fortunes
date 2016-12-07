@@ -98,13 +98,13 @@ game.controller('QuickRound', function($scope, $routeParams) {
     $scope.rscore = 0;
 
 
-    $scope.isRevealed = function(key) {
-    	return ($scope.l_answers[key] === $scope.answers[key]) || ($scope.r_answers[key] === $scope.answers[key]);
+    $scope.isRevealed = function(list, key) {
+    	return list[key] === $scope.answers[key];
     }
 
 	$scope.reveal = function(key) {
         if(key  < 100){
-            if (!$scope.isRevealed(key) && key >= 0 && key < $scope.question.answers.length) {
+            if (!$scope.isRevealed($scope.l_answers, key) && key >= 0 && key < $scope.question.answers.length) {
                 $scope.l_answers[key] = $scope.answers[key];
                 $scope.l_scores[key] = $scope.scores[key];
                 correct.play();
@@ -112,7 +112,7 @@ game.controller('QuickRound', function($scope, $routeParams) {
             }
         }else{
             key = key % 100;
-            if (!$scope.isRevealed(key) && key >= 0 && key < $scope.question.answers.length) {
+            if (!$scope.isRevealed($scope.r_answers, key) && key >= 0 && key < $scope.question.answers.length) {
                 $scope.r_answers[key] = $scope.answers[key];
                 $scope.r_scores[key] = $scope.scores[key];
                 correct.play();
@@ -148,7 +148,7 @@ game.controller('QuickRound', function($scope, $routeParams) {
             //advance left answers
             lKey = lKey == 0 ? 10 : lKey;
         }
-        console.log(lKey);
+
     	$scope.reveal(lKey - 1);
 	};
 
