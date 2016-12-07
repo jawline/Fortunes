@@ -28,8 +28,21 @@ var keyPressHandler = function (e) {
 }
 
 
+game.controller('Start', function($scope, $window, $routeParams) {
+	console.log('Wat');
+	document.onkeypress = function (e) {
+    	e = e || window.event;
+        console.log(e);
 
-game.controller('Round', function($scope, $routeParams) {
+    	if (e.key === "f") {
+    		$window.location.href = "#!/round/0";
+    	}
+	};
+});
+
+game.controller('Done', function($scope, $routeParams) {});
+
+game.controller('Round', function($scope, $window, $routeParams) {
 	var lid = parseInt($routeParams.id);
 
 	//Generate the next panel URI
@@ -63,6 +76,11 @@ game.controller('Round', function($scope, $routeParams) {
     	e = e || window.event;
         keyPressHandler(e);
 
+
+    	if (e.key === "f") {
+    		$window.location.href = $scope.nexturi;
+    	}
+
     	// use e.keyCode
     	var lKey = parseInt(e.key);
     	lKey = lKey == 0 ? 10 : lKey;
@@ -78,10 +96,7 @@ game.controller('Round', function($scope, $routeParams) {
 	}
 });
 
-game.controller('Done', function($scope, $routeParams) {});
-
-
-game.controller('QuickRound', function($scope, $routeParams) {
+game.controller('QuickRound', function($scope, $window, $routeParams) {
 	var lid = parseInt($routeParams.id);
 
 	//Generate the next panel URI
@@ -134,6 +149,10 @@ game.controller('QuickRound', function($scope, $routeParams) {
     	e = e || window.event;
         keyPressHandler(e);
 
+    	if (e.key === "f") {
+    		$window.location.href = $scope.nexturi;
+    	}
+
         //load results from server
         if(e.key == "l"){
             load_answsers(); 
@@ -171,6 +190,7 @@ game.controller('QuickRound', function($scope, $routeParams) {
 game.config([ '$routeProvider', function($routeProvider) {
 
 	$routeProvider.when('/', {
+		controller: 'Start',
 		templateUrl: 'partials/front.html'
 	}).when('/round/:id', {
 		controller: 'Round',
