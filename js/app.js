@@ -44,8 +44,12 @@ game.controller('Round', function($scope, $routeParams) {
 	$scope.scores = $scope.question.scores;
     $scope.score = 0;
 
+    $scope.isRevealed = function(key) {
+    	return $scope.l_answers[key] === $scope.answers[key];
+    }
+
 	$scope.reveal = function(key) {
-		if (key >= 0 && key < $scope.question.answers.length) {
+		if (!$scope.isRevealed(key) && key >= 0 && key < $scope.question.answers.length) {
 			$scope.l_answers[key] = $scope.answers[key];
 			$scope.l_scores[key] = $scope.scores[key];
             correct.play();
@@ -94,9 +98,14 @@ game.controller('QuickRound', function($scope, $routeParams) {
     $scope.lscore = 0;
     $scope.rscore = 0;
 
+
+    $scope.isRevealed = function(key) {
+    	return ($scope.l_answers[key] === $scope.answers[key]) || ($scope.r_answers[key] === $scope.answers[key]);
+    }
+
 	$scope.reveal = function(key) {
         if(key  < 100){
-            if (key >= 0 && key < $scope.question.answers.length) {
+            if (!$scope.isRevealed(key) && key >= 0 && key < $scope.question.answers.length) {
                 $scope.l_answers[key] = $scope.answers[key];
                 $scope.l_scores[key] = $scope.scores[key];
                 correct.play();
@@ -104,7 +113,7 @@ game.controller('QuickRound', function($scope, $routeParams) {
             }
         }else{
             key = key % 100;
-            if (key >= 0 && key < $scope.question.answers.length) {
+            if (!$scope.isRevealed(key) && key >= 0 && key < $scope.question.answers.length) {
                 $scope.r_answers[key] = $scope.answers[key];
                 $scope.r_scores[key] = $scope.scores[key];
                 correct.play();
