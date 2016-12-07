@@ -7,6 +7,27 @@ var game = angular.module('game', [ 'ngRoute' ]);
 //Load audio files
 var correct = new Audio('/media/correct.ogg');
 var wrong = new Audio('/media/wrong.mp3');
+var buz1 = new Audio('/media/hero-baby.ogg');
+var buz2 = new Audio('/media/trololololol.ogg');
+
+
+var keyPressHandler = function (e) {
+    if(e.key == "x") {
+        wrong.play();
+        return false;
+    }else if(e.key == "c"){
+        correct.play();
+        return false;
+    }else if(e.key == "n"){
+        buz1.play();
+        return false;
+    }else if(e.key == "m"){
+        buz2.play();
+        return false;
+    }
+}
+
+
 
 game.controller('Round', function($scope, $routeParams) {
 	var lid = parseInt($routeParams.id);
@@ -36,11 +57,7 @@ game.controller('Round', function($scope, $routeParams) {
     //NB: music.play() will not replay a sound bite if it is already started
 	document.onkeypress = function (e) {
     	e = e || window.event;
-
-        if(e.key == "x") {
-            wrong.play();
-            return false;
-        }
+        keyPressHandler(e);
 
     	// use e.keyCode
     	var lKey = parseInt(e.key);
@@ -97,22 +114,29 @@ game.controller('QuickRound', function($scope, $routeParams) {
 		$scope.$apply();
 	}
 
+    var loadAnswers = function(lr){
+        $http.get('/answers'+ lr + '.json')
+            .success(function(data, status, headers, config) {
+                $scope[lr+ "_answer"] = data;
+        });
+    }
+
     //NB: music.play() will not replay a sound bite if it is already started
 	document.onkeypress = function (e) {
     	e = e || window.event;
+        keyPressHandler(e);
 
-        if(e.key == "x") {
-            wrong.play();
-            return false;
+        //load results from server
+        if(e.key == "l"){
+            load_answsers(); 
         }
 
-    	// use e.keyCode
-    	var lKey = parseInt(e.key);
-        if(e.ctrlKey) {
-            lKey += 100;
-            lKey = lKey == 100 ? 110 : lKey;
-        }else{
-            lKey = lKey == 0 ? 10 : lKey;
+        if(e.which == 39){ //right arrow
+               if(e.ctrlKey){
+                    //advance right answers
+               } else {
+                    //advance left answers
+               }
         }
 
     	$scope.reveal(lKey - 1);
