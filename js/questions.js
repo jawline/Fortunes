@@ -16,7 +16,7 @@ var RQuestions = [
         bonus: "Wikipedia"
     }, {
         title: "Name an App.",
-        answers: ["WhatsApp", "Google Maps", "Tinder", "Uber", "Instargram", "Spotify"],
+        answers: ["WhatsApp", "Google Maps", "Tinder", "Uber", "Instagram", "Spotify"],
         scores: [33, 20, 17, 11, 10, 9],
         bonus: "Angry Birds"
     }
@@ -49,7 +49,7 @@ var QQuestions = [
 var QAnswers = [
     {
         answers: ["a", "b", "c", "d", "e"],
-        scores: [0, 0, 0, 0, 0]
+        scores: [10, 0, 0, 0, 0]
     }, {
         answers: ["a", "b", "c", "d", "e"],
         scores: [0, 0, 0, 0, 0]

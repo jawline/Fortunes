@@ -27,14 +27,12 @@ var keyPressHandler = function (e) {
     }
 }
 
-
-
 game.controller('Round', function($scope, $routeParams) {
 	var lid = parseInt($routeParams.id);
 
 	//Generate the next panel URI
 	if (lid + 1 >= RQuestions.length) {
-		$scope.nexturi = "#!/qround/0";
+		$scope.nexturi = "#!/qround";
 	} else {
 		$scope.nexturi = "#!/round/" + (lid + 1);
 	}
@@ -77,46 +75,41 @@ game.controller('Round', function($scope, $routeParams) {
 
 game.controller('Done', function($scope, $routeParams) {});
 
-
 game.controller('QuickRound', function($scope, $routeParams) {
 	//var lid = parseInt($routeParams.id);
     $scope.nexturi = "#!/done/";
 
-	//$scope.question = QQuestions[lid];
-    $scope.question = QAnswers;
+    //QAnswers;
+	$scope.question = {}; //QQuestions[lid];
 
-	//$scope.answers = $scope.question[0].answers;
-	//$scope.scores = $scope.question[0].scores;
     $scope.l_score = 0;
     $scope.r_score = 0;
 
-    $scope.l_answers = $scope.question[0].answers;
-    $scope.r_answers = $scope.question[1].answers;
+    $scope.question.l_answers = QAnswers[0].answers;
+	$scope.question.l_scores = QAnswers[0].scores;
 
-	$scope.l_scores = $scope.question[0].scores;
-	$scope.r_scores = $scope.question[1].scores;
-
-
+    $scope.question.r_answers = QAnswers[1].answers;
+	$scope.question.r_scores = QAnswers[1].scores;
 
     $scope.isRevealed = function(list, list2, key) {
     	return list[key] === list2[key];
     }
 
 	$scope.reveal = function(key) {
-        if(key  < 100){
-            if (!$scope.isRevealed($scope.l_answers, key) && key >= 0 && key < $scope.l_answers.length) {
-                $scope.l_answers[key] = $scope.l_answers[key];
-                $scope.l_scores[key] = $scope.l_scores[key];
+        if(key < 100){
+            if (!$scope.isRevealed($scope.l_answers, $scope.question.l_answers, key) && key >= 0 && key < $scope.l_answers.length) {
+                $scope.l_answers[key] = $scope.question.l_answers[key];
+                $scope.l_scores[key] = $scope.question.l_scores[key];
                 correct.play();
-                $scope.l_score += parseInt($scope.l_scores[key]);
+                $scope.l_score += parseInt($scope.question.l_scores[key]);
             }
         }else{
             key = key % 100;
-            if (!$scope.isRevealed($scope.r_answers, key) && key >= 0 && key < $scope.question.answers.length) {
-                $scope.r_answers[key] = $scope.r_answers[key];
-                $scope.r_scores[key] = $scope.r_scores[key];
+            if (!$scope.isRevealed($scope.r_answers, $scope.question.r_answers, key) && key >= 0 && key < $scope.r_answers.length) {
+                $scope.r_answers[key] = $scope.question.r_answers[key];
+                $scope.r_scores[key] = $scope.question.r_scores[key];
                 correct.play();
-                $scope.rscore += parseInt($scope.r_scores[key]);
+                $scope.rscore += parseInt($scope.question.r_scores[key]);
             }
         }
 		$scope.$apply();
@@ -144,17 +137,15 @@ game.controller('QuickRound', function($scope, $routeParams) {
 	$scope.r_answers = [];
 	$scope.r_scores = [];
 
-	for (var i = 0; i < $scope.l_answers.length; i++) {
+	for (var i = 0; i < $scope.question.l_answers.length; i++) {
 		$scope.l_answers[i] = "___________";
 		$scope.l_scores[i] = "__";
     }
-	for (var i = 0; i < $scope.r_answers.length; i++) {
+	for (var i = 0; i < $scope.question.r_answers.length; i++) {
 		$scope.r_answers[i] = "___________";
 		$scope.r_scores[i] = "__";
 	}
 });
-
-
 
 game.config([ '$routeProvider', function($routeProvider) {
 
