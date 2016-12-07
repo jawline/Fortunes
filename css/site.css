@@ -95,6 +95,7 @@ a:focus {
 .scoreboard {
     position:relative;
     overflow:auto;
+    min-width:25em;
 }
 .scoreboard#first {
     float:left;

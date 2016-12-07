@@ -95,6 +95,9 @@ game.controller('Round', function($scope, $window, $routeParams) {
 
 game.controller('QuickRound', function($scope, $window, $routeParams) {
 	//var lid = parseInt($routeParams.id);
+    //
+
+    $scope.nexturi = "#!/done";
 
     $scope.question = {};
 
