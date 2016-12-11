@@ -9,6 +9,7 @@ var correct = new Audio('/media/correct.ogg');
 var wrong = new Audio('/media/wrong.mp3');
 var buz1 = new Audio('/media/hero-baby.ogg');
 var buz2 = new Audio('/media/trololololol.ogg');
+var themetune = new Audio('/media/familyfortunes-theme-tune.ogg');
 
 
 var keyPressHandler = function (e) {
@@ -24,6 +25,9 @@ var keyPressHandler = function (e) {
     }else if(e.key == "m"){
         buz2.play();
         return false;
+    }else if(e.key == "t"){
+        themetune.play();
+        return false;
     }
 }
 
@@ -33,6 +37,8 @@ game.controller('Start', function($scope, $window, $routeParams) {
 	document.onkeypress = function (e) {
     	e = e || window.event;
         console.log(e);
+
+        keyPressHandler(e);
 
     	if (e.key === "f") {
     		$window.location.href = "#!/round/0";
