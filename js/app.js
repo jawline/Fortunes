@@ -138,7 +138,7 @@ game.controller('QuickRound', function($scope, $window, $routeParams) {
                 $scope.r_answers[key] = $scope.question.r_answers[key];
                 $scope.r_scores[key] = $scope.question.r_scores[key];
                 correct.play();
-                $scope.rscore += parseInt($scope.question.r_scores[key]);
+                $scope.r_score += parseInt($scope.question.r_scores[key]);
             }
         }
 		$scope.$apply();
