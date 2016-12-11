@@ -12,7 +12,7 @@ var buz2 = new Audio('/media/trololololol.ogg');
 var themetune = new Audio('/media/familyfortunes-theme-tune.ogg');
 var china = new Audio('/media/donal_trump_china.ogg');
 var qwrong = new Audio('/media/wrong-short.ogg');
-var win-prize = new Audio('/media/win-prize.ogg');
+var win_prize = new Audio('/media/win-prize.ogg');
 
 
 var keyPressHandler = function (e) {
@@ -38,7 +38,7 @@ var keyPressHandler = function (e) {
         qwrong.play();
         return false;
     }else if(e.key == "w"){
-        win-prize.play();
+        win_prize.play();
         return false;
     }
 }
