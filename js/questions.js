@@ -52,6 +52,6 @@ var QAnswers = [
         scores: [10, 0, 0, 0, 0]
     }, {
         answers: ["a", "b", "c", "d", "e"],
-        scores: [0, 0, 0, 0, 0]
+        scores: [100, 0, 0, 0, 100]
     }
 ];
