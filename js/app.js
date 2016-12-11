@@ -11,6 +11,7 @@ var buz1 = new Audio('/media/hero-baby.ogg');
 var buz2 = new Audio('/media/trololololol.ogg');
 var themetune = new Audio('/media/familyfortunes-theme-tune.ogg');
 var china = new Audio('/media/donal_trump_china.ogg');
+var qwrong = new Audio('/media/wrong-short.ogg');
 
 
 var keyPressHandler = function (e) {
@@ -31,6 +32,9 @@ var keyPressHandler = function (e) {
         return false;
     }else if(e.key == "y"){
         china.play();
+        return false;
+    }else if(e.key == "z"){
+        qwrong.play();
         return false;
     }
 }
